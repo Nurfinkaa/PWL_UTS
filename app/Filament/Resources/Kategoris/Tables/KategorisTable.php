@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Filament\Resources\Kategoris\Tables;
+
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
+use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+
+class KategorisTable
+{
+    public static function configure(Table $table): Table
+    {
+        return $table
+            ->columns([
+                //
+                TextColumn::make('kategori_kode'),
+                TextColumn::make('kategori_nama'),
+            ])
+            ->filters([
+                //
+            ])
+            ->recordActions([
+                EditAction::make(),
+            ])
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
+                ]),
+            ]);
+    }
+}
