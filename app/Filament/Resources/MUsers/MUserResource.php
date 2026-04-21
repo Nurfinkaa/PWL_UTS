@@ -22,7 +22,7 @@ class MUserResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'nama';
 
-    protected static ?string $navigationLabel = 'Users';
+    protected static ?string $navigationLabel = 'User';
 
     protected static ?string $modelLabel = 'User';
     

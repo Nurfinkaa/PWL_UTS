@@ -16,6 +16,8 @@ use Filament\Tables\Table;
 
 class LevelResource extends Resource
 {
+    protected static ?string $navigationLabel = 'Level';
+
     protected static ?string $model = Level::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAdjustmentsHorizontal;
