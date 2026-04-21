@@ -26,7 +26,7 @@ class MUserResource extends Resource
 
     protected static ?string $modelLabel = 'User';
     
-    protected static ?string $pluralModelLabel = 'Users';
+    protected static ?string $pluralModelLabel = 'User';
 
     public static function form(Schema $schema): Schema
     {

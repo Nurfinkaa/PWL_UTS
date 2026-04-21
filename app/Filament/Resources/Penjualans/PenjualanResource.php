@@ -18,6 +18,8 @@ class PenjualanResource extends Resource
 {
     protected static ?string $navigationLabel = 'Penjualan';
 
+    protected static ?string $pluralModelLabel = 'Penjualan';
+
     protected static ?string $model = Penjualan::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingCart;

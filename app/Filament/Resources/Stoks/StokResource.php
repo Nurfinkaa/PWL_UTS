@@ -18,6 +18,8 @@ class StokResource extends Resource
 {
     protected static ?string $navigationLabel = 'Stok';
 
+    protected static ?string $pluralModelLabel = 'Stok';
+
     protected static ?string $model = Stok::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArchiveBox;

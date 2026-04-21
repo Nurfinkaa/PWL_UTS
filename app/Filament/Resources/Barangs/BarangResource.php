@@ -18,6 +18,8 @@ class BarangResource extends Resource
 {
     protected static ?string $navigationLabel = 'Barang';
 
+    protected static ?string $pluralModelLabel = 'Barang';
+
     protected static ?string $model = Barang::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCube;

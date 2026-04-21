@@ -17,6 +17,8 @@ use Filament\Tables\Table;
 class LevelResource extends Resource
 {
     protected static ?string $navigationLabel = 'Level';
+    
+    protected static ?string $pluralModelLabel = 'Level';
 
     protected static ?string $model = Level::class;
 
