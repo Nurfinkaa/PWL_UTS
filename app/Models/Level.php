@@ -15,4 +15,9 @@ class Level extends Model
         'level_kode',
         'level_nama',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(\App\Models\MUser::class, 'level_id', 'level_id');
+    }
 }

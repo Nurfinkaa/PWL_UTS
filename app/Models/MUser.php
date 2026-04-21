@@ -21,4 +21,14 @@ class MUser extends Model
     {
         return $this->belongsTo(Level::class, 'level_id', 'level_id');
     }
+
+    public function stok()
+    {
+        return $this->hasMany(Stok::class, 'user_id', 'user_id');
+    }
+
+    public function penjualan()
+    {
+        return $this->hasMany(Penjualan::class, 'user_id', 'user_id');
+    }
 }

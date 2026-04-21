@@ -18,4 +18,18 @@ class Barang extends Model
         'harga_jual',
     ];
 
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'kategori_id');
+    }
+
+    public function penjualanDetails()
+    {
+        return $this->hasMany(PenjualanDetail::class, 'barang_id', 'barang_id');
+    }
+
+    public function stok()
+    {
+        return $this->hasMany(Stok::class, 'barang_id', 'barang_id');
+    }
 }
