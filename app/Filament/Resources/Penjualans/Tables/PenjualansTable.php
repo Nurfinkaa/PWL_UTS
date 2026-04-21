@@ -17,16 +17,16 @@ class PenjualansTable
                 TextColumn::make('user.nama')
                     ->label('User')
                     ->sortable(),
-                TextColumn::make('tanggal')
-                    ->date()
+                TextColumn::make('created_at')
+                    ->label('Tanggal')
+                    ->dateTime()
                     ->sortable(),
                 TextColumn::make('total_harga')
-                    ->numeric()
+                    ->label('Total Harga')
+                    ->getStateUsing(fn ($record) 
+                    => $record->details->sum('subtotal'))
+                    ->money('IDR')
                     ->sortable(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
