@@ -2,10 +2,12 @@
 
 namespace App\Filament\Resources\Penjualans\Schemas;
 
-use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
+use Illuminate\Validation\Rules\Unique; 
+use App\Models\MUser;
 
 
 class PenjualanForm
@@ -14,20 +16,20 @@ class PenjualanForm
     {
         return $schema
             ->components([
-                TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
                 Select::make('user_id')
                     ->label('User')
-                    ->relationship('user', 'nama')
+                    ->options(fn () => MUser::pluck('nama', 'user_id')->toArray())
                     ->searchable()
                     ->required(),
-                DatePicker::make('tanggal')
+                TextInput::make('pembeli')
+                    ->label('Pembeli')
                     ->required(),
-                TextInput::make('total_harga')
+                TextInput::make('penjualan_kode')
                     ->required()
-                    ->numeric()
-                    ->default(0),
+                    ->unique(ignoreRecord: true),
+                DateTimePicker::make('penjualan_tanggal')
+                    ->required(),
+
             ]);
     }
 }

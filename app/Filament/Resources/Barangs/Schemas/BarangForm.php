@@ -12,9 +12,6 @@ class BarangForm
     {
         return $schema
             ->components([
-                TextInput::make('kategori_id')
-                    ->required()
-                    ->numeric(),
                 Select::make('kategori_id')
                     ->label('Kategori')
                     ->relationship('kategori', 'kategori_nama')

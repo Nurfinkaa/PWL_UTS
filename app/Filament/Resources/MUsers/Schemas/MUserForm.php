@@ -5,6 +5,7 @@ namespace App\Filament\Resources\MUsers\Schemas;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\DateTimePicker;
 
 class MUserForm
 {
@@ -22,8 +23,7 @@ class MUserForm
                     ->required(),
                 TextInput::make('password')
                     ->password()
-                    ->required()
-                    ->dehydrateStateUsing(fn ($state) => bcrypt($state)),
+                    ->required(),
             ]);
     }
 }

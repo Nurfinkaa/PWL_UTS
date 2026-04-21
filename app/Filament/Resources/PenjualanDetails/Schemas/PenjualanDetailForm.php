@@ -15,7 +15,7 @@ class PenjualanDetailForm
                 //
                 Select::make('penjualan_id')
                     ->label('Penjualan')
-                    ->relationship('penjualan', 'penjualan_id')
+                    ->relationship('penjualan', 'penjualan_kode')
                     ->required(),
 
                 Select::make('barang_id')
@@ -31,9 +31,6 @@ class PenjualanDetailForm
                     ->numeric()
                     ->required(),
 
-                TextInput::make('subtotal')
-                    ->numeric()
-                    ->required(),
             ]);
     }
 }
