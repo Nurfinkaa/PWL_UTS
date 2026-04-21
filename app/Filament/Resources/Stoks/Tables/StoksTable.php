@@ -14,15 +14,18 @@ class StoksTable
     {
         return $table
             ->columns([
-                TextColumn::make('barang_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('supplier_id')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
+                TextColumn::make('barang.barang_nama')
+                    ->label('Nama Barang')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('supplier.supplier_nama')
+                    ->label('Supplier')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('user.nama') // atau user.name
+                    ->label('User')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('tanggal')
                     ->date()
                     ->sortable(),
