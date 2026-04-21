@@ -14,8 +14,8 @@ class MUsersTable
     {
         return $table
             ->columns([
-                TextColumn::make('level_id')
-                    ->numeric()
+                TextColumn::make('level.level_nama')
+                    ->label('Level')
                     ->sortable(),
                 TextColumn::make('username')
                     ->searchable(),

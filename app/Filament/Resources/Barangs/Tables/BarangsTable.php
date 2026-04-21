@@ -14,7 +14,7 @@ class BarangsTable
     {
         return $table
             ->columns([
-                TextColumn::make('kategori_id')
+                TextColumn::make('kategori.kategori_nama')
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('barang_kode')
