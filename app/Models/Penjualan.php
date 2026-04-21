@@ -17,6 +17,11 @@ class Penjualan extends Model
         'tanggal',
     ];
 
+    public function details()
+        {
+            return $this->hasMany(PenjualanDetail::class, 'penjualan_id', 'penjualan_id');
+        }
+
     public function user()
     {
         return $this->belongsTo(MUser::class, 'user_id', 'user_id');

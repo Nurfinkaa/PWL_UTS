@@ -30,6 +30,11 @@ class PenjualanDetailsTable
                 TextColumn::make('jumlah')
                     ->numeric()
                     ->sortable(),
+
+                TextColumn::make('subtotal')
+                    ->label('Subtotal')
+                    ->numeric()
+                    ->sortable(),
             ])
             ->filters([
                 //
