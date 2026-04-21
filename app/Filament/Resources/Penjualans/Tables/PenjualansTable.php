@@ -17,6 +17,10 @@ class PenjualansTable
                 TextColumn::make('user.nama')
                     ->label('User')
                     ->sortable(),
+                TextColumn::make('pembeli')
+                    ->label('Pembeli')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Tanggal')
                     ->dateTime()

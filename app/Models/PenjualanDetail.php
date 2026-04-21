@@ -31,9 +31,9 @@ class PenjualanDetail extends Model
     protected static function booted()
     {
         static::creating(function ($detail) {
-            $stok = \App\Models\Stok::where('barang_id', $detail->barang_id)->first();
+            $totalStok = \App\Models\Stok::where('barang_id', $detail->barang_id)->sum('jumlah');
 
-            if ($stok && $stok->jumlah < $detail->jumlah) {
+            if ($totalStok < $detail->jumlah) {
                 throw new \Exception('Stok tidak mencukupi!');
             }
 
@@ -41,10 +41,22 @@ class PenjualanDetail extends Model
         });
 
         static::created(function ($detail) {
-            $stok = \App\Models\Stok::where('barang_id', $detail->barang_id)->first();
+            $jumlah = $detail->jumlah;
 
-            if ($stok) {
-                $stok->decrement('jumlah', $detail->jumlah);
+            $stoks = \App\Models\Stok::where('barang_id', $detail->barang_id)
+                ->orderBy('tanggal')
+                ->get();
+
+            foreach ($stoks as $stok) {
+                if ($jumlah <= 0) break;
+
+                if ($stok->jumlah >= $jumlah) {
+                    $stok->decrement('jumlah', $jumlah);
+                    $jumlah = 0;
+                } else {
+                    $jumlah -= $stok->jumlah;
+                    $stok->update(['jumlah' => 0]);
+                }
             }
 
             $detail->penjualan->update([
@@ -57,15 +69,34 @@ class PenjualanDetail extends Model
             $newJumlah = $detail->jumlah;
             $selisih = $newJumlah - $oldJumlah;
 
-            $stok = \App\Models\Stok::where('barang_id', $detail->barang_id)->first();
+            if ($selisih > 0) {
+                $totalStok = \App\Models\Stok::where('barang_id', $detail->barang_id)->sum('jumlah');
 
-            if ($stok) {
-                if ($selisih > 0) {
-                    if ($stok->jumlah < $selisih) {
-                        throw new \Exception('Stok tidak mencukupi!');
+                if ($totalStok < $selisih) {
+                    throw new \Exception('Stok tidak mencukupi!');
+                }
+
+                $jumlah = $selisih;
+
+                $stoks = \App\Models\Stok::where('barang_id', $detail->barang_id)
+                    ->orderBy('tanggal')
+                    ->get();
+
+                foreach ($stoks as $stok) {
+                    if ($jumlah <= 0) break;
+
+                    if ($stok->jumlah >= $jumlah) {
+                        $stok->decrement('jumlah', $jumlah);
+                        $jumlah = 0;
+                    } else {
+                        $jumlah -= $stok->jumlah;
+                        $stok->update(['jumlah' => 0]);
                     }
-                    $stok->decrement('jumlah', $selisih);
-                } elseif ($selisih < 0) {
+                }
+            } elseif ($selisih < 0) {
+                $stok = \App\Models\Stok::where('barang_id', $detail->barang_id)->first();
+
+                if ($stok) {
                     $stok->increment('jumlah', abs($selisih));
                 }
             }
