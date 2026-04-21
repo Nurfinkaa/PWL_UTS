@@ -15,4 +15,10 @@ class Penjualan extends Model
         'tanggal',
         'total_harga',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(MUser::class, 'user_id', 'user_id');
+    }
+
 }
