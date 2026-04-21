@@ -16,20 +16,20 @@ class PenjualanDetailsTable
             ->columns([
                 //
                 TextColumn::make('penjualan.penjualan_kode')
-            ->label('Kode Penjualan')
-            ->sortable(),
+                    ->label('Kode Penjualan')
+                    ->sortable(),
 
-        TextColumn::make('barang.barang_nama')
-            ->label('Barang')
-            ->sortable(),
+                TextColumn::make('barang.barang_nama')
+                    ->label('Barang')
+                    ->sortable(),
 
-        TextColumn::make('harga')
-            ->numeric()
-            ->sortable(),
+                TextColumn::make('harga')
+                    ->numeric()
+                    ->sortable(),
 
-        TextColumn::make('jumlah')
-            ->numeric()
-            ->sortable(),
+                TextColumn::make('jumlah')
+                    ->numeric()
+                    ->sortable(),
             ])
             ->filters([
                 //

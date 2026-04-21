@@ -18,8 +18,7 @@ class PenjualanForm
             ->components([
                 Select::make('user_id')
                     ->label('User')
-                    ->options(fn () => MUser::pluck('nama', 'user_id')->toArray())
-                    ->searchable()
+                    ->relationship('user', 'nama') 
                     ->required(),
                 TextInput::make('pembeli')
                     ->label('Pembeli')
