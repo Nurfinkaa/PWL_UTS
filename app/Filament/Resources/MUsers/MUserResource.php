@@ -18,7 +18,7 @@ class MUserResource extends Resource
 {
     protected static ?string $model = MUser::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUser;
 
     protected static ?string $recordTitleAttribute = 'nama';
 
